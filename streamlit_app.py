@@ -18,10 +18,10 @@ def main():
         
         # --- 1. Hausstrom ---
         hausstrom_optionen = {
-            "1 Person (1.500 kWh)": 1500,
-            "2 Personen (2.500 kWh)": 2500,
-            "3 Personen (3.500 kWh)": 3500,
-            "4 Personen (4.500 kWh)": 4500,
+            "1 Person (1.950 kWh)": 1950,
+            "2 Personen (2.750 kWh)": 2750,
+            "3 Personen (3.400 kWh)": 3400,
+            "4 Personen (4.050 kWh)": 4050,
             "Eigene Eingabe...": "custom"
         }
 
@@ -169,7 +169,7 @@ def main():
             # Lade Spotmarktpreise und bilde den Tagesdurchschnitt
             df_spot = cm.lade_strompreise_als_df("2025_15min_spotmarktpreise_netto.csv")
             # Gruppiere nach Stunde und rechne in Cent/kWh um
-            avg_hourly = df_spot.groupby(df_spot.index.hour)['Spotmarktpreis_netto (Cent/kWh)'].mean() * 100 
+            avg_hourly = df_spot.groupby(df_spot.index.hour)['preis_eur'].mean() * 100 
             
             best_hour = avg_hourly.idxmin()
             
